@@ -1,0 +1,4 @@
+---
+varnish:
+  port: 6081
+  malloc_size: 256m

@@ -1,0 +1,16 @@
+---
+- name: Varnish copy conf file to Redhat/CentOS
+  sudo: yes
+  template: src=etc/sysconfig/varnish.j2 dest=/etc/sysconfig/varnish
+  notify: restart varnish
+  when: ansible_os_family == 'RedHat'
+
+- name: Varnish copy conf file to Debian/Ubuntu
+  sudo: yes
+  template: src=etc/sysconfig/varnish.j2 dest=/etc/default/varnish
+  notify: restart varnish
+  when: ansible_os_family == 'Debian'
+
+- name: Ensure Varnish is started and set to run on startup.
+  sudo: yes
+  service: name=varnish state=started enabled=yes

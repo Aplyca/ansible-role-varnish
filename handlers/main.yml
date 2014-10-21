@@ -1,0 +1,12 @@
+---
+- name: restart varnish
+  sudo: yes
+  service: name=varnish state=restarted
+
+- name: reload varnish
+  sudo: yes
+  service: name=varnish state=reloaded
+
+- name: restart iptables
+  sudo: yes
+  service: name=iptables state=restarted

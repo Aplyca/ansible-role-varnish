@@ -1,0 +1,20 @@
+---
+- name: Install libselinux-python
+  sudo: yes
+  yum: pkg=libselinux-python state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: Add the Varnish package repo to yum
+  sudo: yes
+  yum: name=http://repo.varnish-cache.org/redhat/varnish-3.0/el6/noarch/varnish-release/varnish-release-3.0-1.el6.noarch.rpm state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure Varnish is present using yum
+  sudo: yes
+  yum: name=varnish state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure Varnish is present using apt
+  sudo: yes
+  apt: name=varnish state=present
+  when: ansible_os_family == 'Debian'
