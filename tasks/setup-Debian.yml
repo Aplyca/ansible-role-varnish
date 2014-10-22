@@ -1,0 +1,6 @@
+---
+- name: Ensure Varnish is present using apt
+  sudo: yes
+  apt:
+    name: varnish
+    state: present

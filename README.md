@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Aplyca/ansible-role-varnish.svg?branch=master)](https://travis-ci.org/Aplyca/ansible-role-varnish)
 
-Ansible Role that installs an configure Varnish 3.x on Debian/Ubuntu.
+Ansible Role that installs and configure Varnish 3.x on Debian/Ubuntu.
 
 ## Requirements
 
@@ -39,7 +39,7 @@ cd tests;
 vagrant box add ubuntu/trusty64;
 vagrant up;
 ```
-You should see an Varnish server on http://localhost:8080
+You should see an Varnish cache on http://localhost:6081
 
 ## License
 

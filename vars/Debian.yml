@@ -1,5 +1,3 @@
 ---
-apache:
-    service: apache2
-    server_root: /etc/apache2
-    mods_available_path: mods-available
+varnish:
+    conf_path: /etc/default/varnish
