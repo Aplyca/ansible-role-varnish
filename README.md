@@ -39,7 +39,7 @@ cd tests;
 vagrant box add ubuntu/trusty64;
 vagrant up;
 ```
-You should see an Varnish cache on http://localhost:6081
+You should see the Varnish cache running on http://localhost:6081
 
 ## License
 
