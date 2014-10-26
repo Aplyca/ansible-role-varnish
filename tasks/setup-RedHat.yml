@@ -12,7 +12,7 @@
     disable_gpg_check: yes
     state: present
   with_items: varnish['rpms']
-  when: varnish['rpms']
+  when: varnish['rpms'] is defined
 
 - name: Ensure Varnish is present using yum
   sudo: yes
