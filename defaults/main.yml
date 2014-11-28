@@ -2,3 +2,4 @@
 varnish:
   port: 6081
   malloc_size: 256m
+  default_vcl: /etc/varnish/default.vcl
