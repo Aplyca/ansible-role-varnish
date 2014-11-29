@@ -9,19 +9,13 @@ dependencies:
 machine:
   environment:
     PLAYBOOK: playbook.yml
-  pre:
-    - uname -a
-    - cat /proc/version
-  hosts:
-    myapp.com: 127.0.0.1
 
 test:
   pre:
     - sudo ln -s ansible-role-varnish ../../mauricios.Varnish
-    - ansible --version
   override:
     - ansible-playbook $PLAYBOOK --syntax-check
     - ansible-playbook $PLAYBOOK --connection=local
     - "ansible-playbook $PLAYBOOK --connection=local | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
-    - "varnishd -v"
+    - "varnishd -V"
     - "curl -I http://localhost:6081"
