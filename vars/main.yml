@@ -1,0 +1,2 @@
+varnish:
+  install_dir: /etc/varnish
