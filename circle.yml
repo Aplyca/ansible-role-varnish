@@ -17,11 +17,11 @@ machine:
 
 test:
   pre:
-    - sudo ln -s ansible-role-apache ../../mauricios.Varnish
+    - sudo ln -s ansible-role-varnish ../../mauricios.Varnish
     - ansible --version
   override:
     - ansible-playbook $PLAYBOOK --syntax-check
     - ansible-playbook $PLAYBOOK --connection=local
     - "ansible-playbook $PLAYBOOK --connection=local | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
-    - "varnish -v"
+    - "varnishd -v"
     - "curl -I http://localhost:6081"
