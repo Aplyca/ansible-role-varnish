@@ -1,7 +1,7 @@
 # Ansible Role: Varnish 3.x
 
 [![Build Status](https://travis-ci.org/Aplyca/ansible-role-varnish.svg?branch=master)](https://travis-ci.org/Aplyca/ansible-role-varnish)
-
+[![Circle CI](https://circleci.com/gh/Aplyca/ansible-role-varnish.svg?style=svg)](https://circleci.com/gh/Aplyca/ansible-role-varnish)
 Ansible Role that installs and configure Varnish 3.x on Debian/Ubuntu.
 
 ## Requirements
