@@ -1,7 +1,8 @@
 ---
 varnish:
+  version: 3
   port: 6081
-  malloc_size: 256m
+  storage: "malloc,256m"
   default_vcl: /etc/varnish/default.vcl
   send_timeout: 60
   vcl_dir: /etc/varnish

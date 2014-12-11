@@ -1,4 +1,11 @@
 ---
+- name: Include RedHat 7 variables for Varnish varnish['version'].
+  include_vars: "Varnish-{{ varnish['version'] }}_RedHat-7.yml"
+  when: ansible_distribution_version | version_compare('7', '>=')
+
+- debug: var=varnish
+
+
 - name: Add the Varnish rpms repo to yum
   sudo: yes
   yum:
@@ -6,3 +13,14 @@
     disable_gpg_check: yes
     state: present
   with_items: varnish['packages']
+
+- name: Update yum
+  sudo: yes
+  command: yum -y update
+
+- name: Make sure varnish is installed
+  sudo: yes
+  yum:
+    name: varnish
+    disable_gpg_check: yes
+    state: present

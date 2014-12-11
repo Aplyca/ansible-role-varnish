@@ -1,0 +1,7 @@
+---
+varnish:
+    conf_path: /etc/sysconfig/varnish
+    packages:
+      - libselinux-python
+      - https://repo.varnish-cache.org/redhat/varnish-3.0/el7/x86_64/varnish/varnish-libs-3.0.6-1.el7.centos.x86_64.rpm
+      - https://repo.varnish-cache.org/redhat/varnish-3.0/el7/x86_64/varnish/varnish-3.0.6-1.el7.centos.x86_64.rpm
