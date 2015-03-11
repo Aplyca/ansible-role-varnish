@@ -5,3 +5,19 @@
     src: etc/sysconfig/varnish.j2
     dest: "{{ varnish['conf_path'] }}"
   notify: restart varnish
+
+- name: Make sure the directory of the VCL exists
+  sudo: yes
+  file:
+    path: "{{ varnish['default_dir'] }}"
+    state: directory
+  tags:
+    - release
+  when: accelerator['repo'] is not defined
+
+- name: Configuring VCL
+  sudo: yes
+  template:
+    src: default.vcl.j2
+    dest: "{{ varnish['default_dir'] }}/default.vcl"
+  notify: reload varnish

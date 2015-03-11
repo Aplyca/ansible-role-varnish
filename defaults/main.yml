@@ -3,6 +3,9 @@ varnish:
   version: 3
   port: 6081
   storage: "malloc,256m"
-  default_vcl: /etc/varnish/default.vcl
+  default_dir: /etc/varnish
   send_timeout: 60
   vcl_dir: /etc/varnish
+  backend:
+    host: 127.0.0.1
+    port: 8080
