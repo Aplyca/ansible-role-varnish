@@ -11,9 +11,6 @@
   file:
     path: "{{ varnish['default_dir'] }}"
     state: directory
-  tags:
-    - release
-  when: accelerator['repo'] is not defined
 
 - name: Configuring VCL
   sudo: yes
