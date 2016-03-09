@@ -1,4 +1,8 @@
 ---
 - hosts: all
-  roles:
-    - mauricios.Varnish
+  tasks:
+  - name: Test if Varnish is installed and running
+    sudo: yes
+    shell: "varnishadm 'ping'"
+    register: result
+    failed_when: "'PONG' not in result.stdout"

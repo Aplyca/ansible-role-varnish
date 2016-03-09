@@ -14,12 +14,12 @@ See official docs: http://docs.ansible.com/intro_configuration.html#hash-behavio
 
 Using ansible galaxy:
 ```bash
-ansible-galaxy install mauricios.Varnish
+ansible-galaxy install aplyca.Varnish
 ```
 You can add this role as a dependency for other roles, add the role to the meta/main.yml file of your own role:
 ```yaml
 dependencies:
-  - { role: mauricios.Varnish }
+  - { role: aplyca.Varnish }
 ```
 
 ## Role Variables
@@ -31,13 +31,15 @@ See default variables: https://github.com/Aplyca/ansible-role-varnish/blob/maste
 None.
 
 ## Testing
-
-Use Vagrant to test the role:
+### Using Vagrant:
 
 ```bash
-cd tests;
-vagrant box add ubuntu/trusty64;
-vagrant up;
+tests/vagrant.sh
+```
+### Using Docker:
+
+```bash
+tests/docker.sh
 ```
 You should see the Varnish cache running on http://localhost:6081
 

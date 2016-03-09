@@ -1,0 +1,3 @@
+---
+varnish:
+  version: 4

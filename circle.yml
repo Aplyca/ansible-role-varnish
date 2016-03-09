@@ -3,8 +3,7 @@ general:
 
 dependencies:
   pre:
-    - sudo pip install paramiko PyYAML jinja2 httplib2
-    - sudo pip install ansible
+      - sudo pip install -r build/requirements.txt
 
 machine:
   environment:
@@ -12,10 +11,6 @@ machine:
 
 test:
   pre:
-    - sudo ln -s ansible-role-varnish ../../mauricios.Varnish
+    - sudo ln -s ansible-role-varnish ../../aplyca.Varnish
   override:
-    - ansible-playbook $PLAYBOOK --syntax-check
-    - ansible-playbook $PLAYBOOK --connection=local
-    - "ansible-playbook $PLAYBOOK --connection=local | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
-    - "varnishd -V"
-    - "curl -I http://localhost:6081"
+    - tests/test.sh

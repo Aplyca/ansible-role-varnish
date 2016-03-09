@@ -1,7 +1,7 @@
 ---
 - name: Ensure Varnish is present using apt
-  sudo: yes
+  become: yes
   apt:
     name: "{{ item }}"
     state: present
-  with_items: varnish['packages']    
+  with_items: "{{ varnish.packages }}"
