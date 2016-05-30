@@ -4,16 +4,14 @@ python: "2.7"
 
 before_install:
   - sudo apt-get update -qq
-  - ln -s ansible-role-varnish ../mauricios.Varnish
+  - ln -s ansible-role-varnish ../Aplyca.Varnish
 
 install:
-  - sudo apt-get install -y curl
-
   # Install Ansible.
-  - sudo pip install -r build/requirements.txt
+  - sudo pip install -r tests/requirements.txt
 
 script:
-  - tests/test.sh
+  - tests/tests.sh
 
 notifications:
   email: false

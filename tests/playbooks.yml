@@ -1,0 +1,10 @@
+---
+- name: Test Varnish provision
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Test if Varnish is installed and running
+      become: yes
+      shell: "varnishadm 'ping'"
+      register: result
+      failed_when: "'PONG' not in result.stdout"

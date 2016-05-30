@@ -1,19 +1,19 @@
 ---
 - name: restart varnish
-  sudo: yes
+  become: yes
   service:
     name: varnish
     state: restarted
     enabled: yes
 
 - name: reload varnish
-  sudo: yes
+  become: yes
   service:
     name: varnish
     state: reloaded
 
 - name: restart iptables
-  sudo: yes
+  become: yes
   service:
     name: iptables
     state: restarted

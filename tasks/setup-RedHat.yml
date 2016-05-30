@@ -12,7 +12,7 @@
   with_items: "{{ varnish.packages }}"
 
 - name: Update yum
-  sudo: yes
+  become: yes
   command: yum -y update
 
 - name: Make sure varnish is installed

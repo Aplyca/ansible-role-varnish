@@ -1,8 +1,8 @@
 #!/bin/bash
-# test MatiaDB provisiones with ansible
+# Test Varnish provisiones with Ansible
 
-ANSIBLE_ROLE="aplyca.Varnish"
+ANSIBLE_ROLE="Aplyca.Varnish"
 DOCKER_IMAGE="ansible/ubuntu14.04-ansible"
 
-docker run -it --name test-varnish -v `pwd`:/tmp/${ANSIBLE_ROLE} ${DOCKER_IMAGE} /tmp/${ANSIBLE_ROLE}/tests/tests.sh
-docker stop test-varnish && docker rm test-varnish
+docker run -it --name test-${ANSIBLE_ROLE} -v `pwd`:/tmp/${ANSIBLE_ROLE} ${DOCKER_IMAGE} /tmp/${ANSIBLE_ROLE}/tests/tests.sh
+docker stop test-${ANSIBLE_ROLE} && docker rm test-${ANSIBLE_ROLE}

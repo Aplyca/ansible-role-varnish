@@ -1,0 +1,5 @@
+---
+- name: Provision Varnish http accelerator
+  hosts: all
+  roles:
+    - { role: Aplyca.Varnish, tags: ["varnish"] }
