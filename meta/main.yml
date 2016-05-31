@@ -2,7 +2,7 @@
 dependencies: []
 
 galaxy_info:
-  author: mauricios
+  author: Aplyca
   description: Varnish 3.x for Debian/Ubuntu.
   company: "Aplyca SAS"
   license: "license (BSD, MIT)"
