@@ -2,7 +2,7 @@
 - name: "Open port {{ varnish.port }} in SELinux"
   become: yes
   template:
-      src: etc/sysconfig/iptables.j2
+      src: iptables.j2
       dest: /etc/sysconfig/iptables
   notify: restart iptables
   when: ansible_os_family == 'RedHat'

@@ -2,7 +2,7 @@
 - name: Configuring Varnish service
   become: yes
   template:
-    src: etc/sysconfig/varnish.j2
+    src: varnish.j2
     dest: "{{ varnish.conf_path }}"
   notify: restart varnish
 
