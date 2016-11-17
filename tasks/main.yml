@@ -1,4 +1,7 @@
 ---
+- debug: var=varnish verbosity=1
+  tags: vars
+
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
