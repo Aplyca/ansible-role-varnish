@@ -6,15 +6,17 @@
     dest: "{{ varnish.conf_path }}"
   notify: restart varnish
 
-- name: Make sure the directory of the VCL exists
-  become: yes
-  file:
-    path: "{{ varnish.default_dir }}"
-    state: directory
+- block:
+    - name: Make sure the directory of the VCL exists
+      become: yes
+      file:
+        path: "{{ varnish.default_dir }}"
+        state: directory  
 
-- name: Configuring VCL
-  become: yes
-  template:
-    src: default.vcl.j2
-    dest: "{{ varnish.default_dir }}/default.vcl"
-  notify: reload varnish
+    - name: Configuring VCL
+      become: yes
+      template:
+        src: default.vcl.j2
+        dest: "{{ varnish.default_dir }}/default.vcl"
+      notify: reload varnish
+  when: varnish.install_vcl

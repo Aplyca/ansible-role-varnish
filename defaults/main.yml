@@ -6,6 +6,7 @@ varnish:
   default_dir: /etc/varnish
   send_timeout: 60
   vcl_dir: /etc/varnish
+  install_vcl: True  
   backend:
     host: 127.0.0.1
     port: 8080
