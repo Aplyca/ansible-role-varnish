@@ -11,7 +11,7 @@
       become: yes
       file:
         path: "{{ varnish.default_dir }}"
-        state: directory  
+        state: directory
 
     - name: Configuring VCL
       become: yes
@@ -20,3 +20,13 @@
         dest: "{{ varnish.default_dir }}/default.vcl"
       notify: reload varnish
   when: varnish.install_vcl
+
+- name: Task for container provision
+  block:
+    - name: Create Docker entrypoint
+      become: yes
+      copy:
+        src: docker-entrypoint
+        dest: /usr/local/bin/docker-entrypoint
+        mode: 0755
+  when: ansible_connection == 'docker'
