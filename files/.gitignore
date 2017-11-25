@@ -1,6 +1,0 @@
-.vagrant
-custom
-.vault
-*.retry
-**/roles
-*.log
