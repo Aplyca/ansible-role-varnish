@@ -15,7 +15,7 @@
   become: yes
   command: yum -y update
 
-- name: Make sure varnish is installed
+- name: Make sure Varnish is installed
   become: yes
   yum:
     name: varnish
