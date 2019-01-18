@@ -2,21 +2,34 @@
 - name: Configuring Varnish service
   become: yes
   template:
-    src: varnish.j2
-    dest: "{{ varnish.conf_path }}"
+      src: varnish.j2
+      dest: "{{ varnish.conf_path }}"
   notify: restart varnish
 
 - block:
-    - name: Make sure the directory of the VCL exists
-      become: yes
-      file:
-        path: "{{ varnish.default_dir }}"
-        state: directory
+      - name: Make sure the directory of the VCL exists
+        become: yes
+        file:
+            path: "{{ varnish.default_dir }}"
+            state: directory
 
-    - name: Configuring VCL
-      become: yes
-      template:
-        src: default.vcl.j2
-        dest: "{{ varnish.default_dir }}/default.vcl"
-      notify: reload varnish
+      - name: Configuring VCL
+        become: yes
+        template:
+            src: default.vcl.j2
+            dest: "{{ varnish.default_dir }}/default.vcl"
+        notify: reload varnish
   when: varnish.install_vcl
+
+- name: Add process configuration to Varnish service in systemd
+  become: yes
+  lineinfile:
+      dest: "/lib/systemd/system/varnish.service"
+      regexp: "^ExecStart=.*>$"
+      line: "ExecStart=/usr/sbin/varnishd -j unix,user=vcache -F -a :{{ varnish.port | default('6081') }} -T localhost:6082 -f {{ varnish.default_dir | default('/etc/varnish') }}/default.vcl -S /etc/varnish/secret -p {{ varnish.send_timeout | default('60') }} -p vcl_dir={{ varnish.vcl_dir | default('/etc/varnish') }} -s {{ varnish.storage | default('malloc,256m') }}"
+      state: present
+      backrefs: yes
+  notify:
+      - enable varnish
+      - restart varnish
+  tags: varnish

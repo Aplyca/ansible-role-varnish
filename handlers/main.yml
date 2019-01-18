@@ -2,20 +2,32 @@
 - name: restart varnish
   become: yes
   service:
-    name: varnish
-    state: restarted
-    enabled: yes
+      name: varnish
+      state: restarted
+      enabled: yes
   when: ansible_connection != 'docker'
 
 - name: reload varnish
   become: yes
   service:
-    name: varnish
-    state: reloaded
-  when: ansible_connection != 'docker'     
+      name: varnish
+      state: reloaded
+  when: ansible_connection != 'docker'
 
 - name: restart iptables
   become: yes
   service:
-    name: iptables
-    state: restarted
+      name: iptables
+      state: restarted
+
+- name: enable varnish
+  systemd:
+      name: varnish
+      enabled: yes
+      masked: no
+
+- name: restart varnish
+  systemd:
+      state: restarted
+      daemon_reload: yes
+      name: varnish
