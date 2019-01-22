@@ -21,12 +21,12 @@
         notify: reload varnish
   when: varnish.install_vcl
 
-- name: Add process configuration to Varnish service in systemd
+- name: Configure Systemd process
   become: yes
   lineinfile:
       dest: "/lib/systemd/system/varnish.service"
-      regexp: "^ExecStart=.*>$"
-      line: "ExecStart=/usr/sbin/varnishd -j unix,user=vcache -F -a :{{ varnish.port | default('6081') }} -T localhost:6082 -f {{ varnish.default_dir | default('/etc/varnish') }}/default.vcl -S /etc/varnish/secret -p {{ varnish.send_timeout | default('60') }} -p vcl_dir={{ varnish.vcl_dir | default('/etc/varnish') }} -s {{ varnish.storage | default('malloc,256m') }}"
+      regexp: "^ExecStart=.*$"
+      line: "ExecStart=/usr/sbin/varnishd -j unix,user=vcache -F -a :{{ varnish.port | default('6081') }} -T localhost:6082 -f {{ varnish.default_dir | default('/etc/varnish') }}/default.vcl -S /etc/varnish/secret -p send_timeout={{ varnish.send_timeout | default('60') }} -p vcl_dir={{ varnish.vcl_dir | default('/etc/varnish') }} -s {{ varnish.storage | default('malloc,256m') }}\nRestart=always"
       state: present
       backrefs: yes
   notify:

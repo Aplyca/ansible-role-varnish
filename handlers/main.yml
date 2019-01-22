@@ -1,12 +1,4 @@
 ---
-- name: restart varnish
-  become: yes
-  service:
-      name: varnish
-      state: restarted
-      enabled: yes
-  when: ansible_connection != 'docker'
-
 - name: reload varnish
   become: yes
   service:
@@ -21,12 +13,15 @@
       state: restarted
 
 - name: enable varnish
+  become: yes
   systemd:
       name: varnish
       enabled: yes
       masked: no
+      daemon_reload: yes
 
 - name: restart varnish
+  become: yes
   systemd:
       state: restarted
       daemon_reload: yes
