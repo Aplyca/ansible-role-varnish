@@ -12,3 +12,4 @@
   when: ansible_os_family == 'Debian'
 
 - include_tasks: post-setup.yml
+  tags: always
